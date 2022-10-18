@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Palabra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="encabezado_agregar">
+        <h1><img src="Imagenes/Logo.png" class="Logo Alura" alt="Logo Alura"></h1>
+        <h2 class="titulo_encabezado_agregar">Agregar palabra</h2>
+    </header>
+    <main>
+        <section class="ingresar-palabra"></section>
+        <textarea cols="60" rows="20" id="Ingrese-Palabra" placeholder="Ingrese una palabra" maxlength="8" class="txt_palabra"></textarea>
+        
+        <i class="fas fa-exclamation-circle"></i>
+        <p><img src="Imagenes/Vector.png"> Máx. de 8 letras</p>
+
+        <section>
+           <!-- <a href="empezar_jugar.html" id="ingresarPalabra" onclick="agregarPalabra()">Guardar y Empezar</a> -->
+          <!--  <a href="empezar_jugar.html">  -->
+                <input class="btn_agregar" type="button" id="agregarPalabra" value="Agregar y Empezar" onclick="botonGuardar()">
+          <!--  </a>  -->
+            <a href="index.html" class="Cancelar" >Cancelar</a>
+        </section>
+    </main>
+    <footer class="pie_pagina_3">
+        <p class="copyright">&copy Creado por Oscar Lozano - 2022</p>
+        <a href="https://www.linkedin.com/in/OlozanoBocanegra/" target="_blank"><img src="imagenes/logo_linkedin.png" alt=""/></a>
+        <a href="https://github.com/Olozano1194" target="_blank"><img src="imagenes/logo_github.png" alt=""/></a>
+        
+    </footer>
+    <script src="script.js"></script> 
+</body>
+</html>

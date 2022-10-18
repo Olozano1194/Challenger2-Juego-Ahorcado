@@ -1,0 +1,485 @@
+body{
+    position: relative;
+    width: 1440px;
+    background-color: #e5e5e5;
+    font-family: 'SF Pixelate', sans-serif;
+}
+
+.encabezado{
+    position: relative;
+    display: flex;
+    width: 1080px; 
+    margin: 40px 0 0 135px;
+}
+
+.titulo-encabezado{
+    display: flex;
+    font-family: 'SF Pixelate', sans-serif;
+    text-align: center;
+    font-size: 2rem; /*tamaño de la fuente*/
+    margin: 30px 200px 1em; 
+    clear: left;
+    
+
+}
+
+/*boton inicio de juego*/
+.Inicio-Juego{
+    position: absolute;
+    flex-direction: column; /*sirve para darle direccion a la letra dentro del buttton*/
+    width: 17%;
+    height: 50px;
+    top: 200px;
+    left: 485px;
+
+    border-radius: 24px;
+   /* border: 1px solid #0a3871; */
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 54px;
+    text-align: center;
+    text-decoration: none;
+    
+    padding: 24px; 
+    
+    color: white;
+    background: blue;
+    border: none;
+    
+    transition: 1s all;
+    cursor: pointer; 
+}
+
+.Inicio-Juego:hover{
+    background: darkblue;
+    transform: scale(1.1);
+}
+
+/*boton ingresar palabra*/
+.Ingresar-palabra{
+    position: absolute;
+    flex-direction: column;
+    width: 17%;
+    height: 50px;
+    top: 380px;
+    left: 485px;
+
+    border-radius: 24px;
+   /* border: 1px solid #0a3871; */
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 67px;
+    text-align: center;
+    text-decoration: none;
+    
+    padding: 24px ; 
+    
+    color: blue;
+    background: white;
+    border: none;
+    
+    transition: 1s all;
+    cursor: pointer; 
+}
+
+.Ingresar-palabra:hover{
+    background: darkgrey;
+    transform: scale(1.1);
+}
+
+.pie_pagina{
+    position: absolute;
+    grid-area: pie_pagina;
+    display: grid;
+    top: 650px;
+    place-content: center;
+    justify-content: flex-start;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+.pie_pagina img{
+    height: 40px;
+    margin-right: 20px; 
+}
+
+.copyright{
+    margin-right: 20px;
+}
+
+/* aca empezamos la seccion del estilo para la segunda pagina---ingresar_Palabra*/
+
+.encabezado_agregar{
+    position: relative;
+    display: flex;
+    width: 1080px; 
+    margin: 40px 0 0 135px;
+}
+
+.titulo_encabezado_agregar{
+    display: flex;
+    font-family: 'SF Pixelate', sans-serif;
+    text-align: center;
+    font-size: 2rem; /*tamaño de la fuente*/
+    margin: 30px 200px 1em; 
+    clear: left;
+}
+
+.txt_palabra{
+    position: relative;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+.txt_palabra::placeholder{
+    font-family: 'Inter';
+    color: blue;
+}
+textarea{
+    resize: none;
+}
+p{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    margin-left: 250px;
+}
+.btn_agregar{
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 16%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: blue;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: 1s all;
+    cursor: pointer;
+}
+.btn_agregar:hover{
+    background: darkblue;
+    transform: scale(1.1);
+}
+.Cancelar{
+    
+    display: block; 
+    text-align: center;
+    margin-top: -46px;
+    margin-left: 550px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 16%;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: red;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: 1s all;
+    cursor: pointer;
+
+}
+.Cancelar:hover{
+    background: darkred;
+    transform: scale(1.1);
+}
+
+.desistir:hover{
+    background: darkred;
+    transform: scale(1.1);
+}
+
+.pie_pagina_3{
+    grid-area: pie_pagina;
+    display: grid;
+    margin-top: 45px;
+    place-content: center;
+    justify-content: center;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+.pie_pagina_3 img{
+    height: 40px;
+    margin-right: 20px; 
+}
+
+/*aca empieza la tercera pagina----empezar_jugar*/
+
+.header{
+    display: flex;
+    width: 940px; 
+    position: relative;
+    margin: 20px 0 0 135px;
+}
+
+.ahorcado{
+    display: flex;
+    font-family: 'SF Pixelate', sans-serif;
+    text-align: center;
+    font-size: 2em; /*tamaño de la fuente*/
+    margin: 10px 190px 1em;
+    clear: left;
+}
+
+.canva{
+    display: flex;
+    position: center;
+    margin-left: 50px;
+}
+
+.juego_nuevo{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-left: 250px;
+    width: 12%;
+    padding: 14px;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    background: blue;
+    text-decoration: none;
+    border: none; 
+    border-radius: 25px;
+    transition: 1s all;
+    cursor: pointer;
+}
+.juego_nuevo:hover{
+    background: darkblue;
+    transform: scale(1.1);
+}
+
+.desistir{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 0px 320px;
+    width: 12%;
+    padding: 14px;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    background: red;
+    text-decoration: none;
+    border: none; 
+    border-radius: 25px;
+    transition: 1s all;
+    cursor: pointer;
+}
+.desistir:hover{
+    background: darkred;
+    transform: scale(1.1);
+}
+
+.pie_pagina_2{
+    grid-area: pie_pagina;
+    display: grid;
+    margin-top: 45px;
+    place-content: center;
+    justify-content: center;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+.pie_pagina_2 img{
+    height: 40px;
+    margin-right: 20px; 
+}
+
+/*aca comenzamos el responsive*/
+@media screen and (max-width:460px) {
+    
+    body{
+        width: 100%;
+        height: auto;
+    }
+    
+    .encabezado{
+        width: 32px;
+        height: 48px;
+        margin-left: 10px;
+        position: initial;
+        
+    }
+    
+    .titulo-encabezado{
+         
+       margin-top: 20px;
+       margin-left: 190%;           
+              
+    } 
+
+    .Inicio-Juego{
+        width: 30%;
+        height: 50px;
+        top: 200px;
+        left: 30%;
+        line-height: 50px;
+    }
+    
+    .Ingresar-palabra{
+        width: 35%;
+        height: 50px;
+        top: 350px;
+        left: 27%;
+        line-height: 30px;
+        
+        
+    }
+
+    .pie_pagina{
+        display: flex;
+        top: 535px;
+        place-content: initial;
+        
+    }
+    
+    .pie_pagina img{
+        height: 40px;
+        
+    }
+
+    .copyright{
+        display: flex;
+        margin-left: 20px;
+    }
+
+/*aca empezamos el responsive de la pagina 2*/
+    
+    .header{
+        width: 32px;
+        height: 48px;
+        margin-left: 10px;
+        position: initial;
+    }
+    
+    .ahorcado{
+        margin-top: 0px;
+        margin-left: 190%; 
+
+    }
+    .canva{
+        position: absolute;
+        width: 750px;
+        height: 750px;
+        top: 100px;
+        left: -200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        border-color: #0A3871;
+    }
+
+    .juego_nuevo{
+        width: 30%;
+        height: 50px;
+        top: 755px;
+        left: -230px; 
+        line-height: 80px;
+    }
+
+    .desistir{
+        width: 35%;
+        height: 50px;
+        top: 700px;
+        left: -2%;
+        line-height: 30px;
+    }
+
+    .pie_pagina_2{
+        display: flex;
+        margin-top: 730px;
+        margin-left: 30px;
+        place-content: initial;
+    }
+
+    .pie_pagina_2 img{
+        height: 40px;
+        
+    }
+
+    /*aca empieza el responsive de la pagina agregar palabra*/
+
+    .encabezado_agregar{
+        width: 32px;
+        height: 48px;
+        margin-left: 10px;
+        position: initial;
+    }
+
+    .titulo_encabezado_agregar{
+        margin-top: 15px;
+        margin-left: 190%;
+    }
+
+    .txt_palabra{
+        position: absolute;
+        margin-top: 70px;
+        margin-left: 10px;
+    }
+
+    p{
+        position: relative;
+        top: 380px;
+        margin-left: 10px;
+    }
+
+    .btn_agregar{
+        margin-top: 400px;
+        margin-left: 10px;
+        width: 40%;
+        height: 50px;
+        
+    }
+
+    .Cancelar{
+        margin-top: -50px;
+        margin-left: 300px;
+        width: 30%;
+        height: 24px;
+        line-height: 25px;
+    }
+
+    .pie_pagina_3{
+        display: flex;
+        top: 22px;
+        margin-left: 30px;
+        place-content: initial;
+        
+    }
+
+    .pie_pagina_3{
+        display: flex;
+        margin-top: 22px;
+        margin-left: 30px;
+        place-content: initial;
+    }
+
+    .pie_pagina_3 img{
+        height: 40px;
+        
+    }
+
+    .copyright{
+        display: flex;
+        top: 5px;
+    }
+
+
+
+}
+
