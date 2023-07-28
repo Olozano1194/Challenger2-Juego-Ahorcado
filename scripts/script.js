@@ -23,15 +23,13 @@ function escojerPalabraSecreta() {
 //comparar la entradas de teclado
 function compruebaLetra(key) {
 
-    var estado = false;
-    if (key >= 65 && letras.indexOf(key) || key <= 90 && letras.indexOf(key)) { //aca tomamos todas las letras del abecedario
-        letras.push(key);
-        console.log(key);
-        return estado;
+    let estado = /^[A-Za-z]$/;
+    if (estado.test(key)) {
+    console.log(key);
+    return false; // Es una letra válida
     } else {
-        estado = true;
-        console.log(key);
-        return true;
+    console.log(key);
+    return true; // No es una letra válida
     }
 
 }
@@ -60,23 +58,32 @@ window.onload = function nuevo_juego() {
 
     document.onkeydown = (e) => {
         var tecla = e.key.toUpperCase();
-        if (compruebaLetra(tecla)) {
-          var letra = tecla;
-          if (palabraSecreta.includes(tecla) && !palabraCorrect.includes(tecla)) {
-            for (var i = 0; i < palabraSecreta.length; i++) {
-              if (palabraSecreta[i] === letra) {
-                dibujarLetra(i);
-                //agregarAcierto(palabraSecreta[i]);
-                //verificarGanador();
+        
+        // Verificar si la tecla ingresada es una letra
+        if (/^[A-Z]$/.test(tecla)) {
+          // Verificar si la tecla ya fue ingresada antes
+          if (!letras.includes(tecla)) {
+            letras.push(tecla); // Agregar la tecla al array letras
+            var letra = tecla;
+            
+            if (palabraSecreta.includes(tecla) && !palabraCorrect.includes(tecla)) {
+              for (var i = 0; i < palabraSecreta.length; i++) {
+                if (palabraSecreta[i] === letra) {
+                  dibujarLetra(i);
+                  //agregarAcierto(palabraSecreta[i]);
+                  //verificarGanador();
+                }
               }
+            } else if (!letraIncorrecta.includes(letra) && !palabraCorrect.includes(letra) && palabraCorrect.length < palabraSecreta.length) {
+              anhadirLetraIncorrecta(letra);
+              dibujarLetraIncorrecta(letra, errores);
             }
-          } else if (!letraIncorrecta.includes(letra) && !palabraCorrect.includes(letra) && palabraCorrect.length < palabraSecreta.length && verificaLetra(e.keyCode)) {
-                anhadirLetraIncorrecta(letra);
-                dibujarLetraIncorrecta(letra, errores);
+            
+            // Verificar si el jugador ganó después de procesar la letra ingresada
+            comprobarSiGano(letra);
           }
         }
-       comprobarSiGano(letra);
-    }
+      }
 }
 
 
@@ -131,6 +138,7 @@ function comprobarSiGano(letra) {
         })
         // borrarCanvas();
         reload();
+        escojerPalabraSecreta();
     }
     if (!palabraSecreta.includes(letra)) {
         erradas++;
@@ -151,6 +159,7 @@ function comprobarSiGano(letra) {
             })
             //  borrarCanvas();  
             reload();
+            escojerPalabraSecreta();
         }
     }
 }
@@ -166,7 +175,9 @@ function agregarPalabra(){
 
         // haz con que los componentes de la pantalla de agregar palabra desaparezcan
        // document.getElementById("div-aparece-agregar").style.display = "none";
+            
             nuevo_juego();
+            
     }
     else {
         alert("No hay escrito ninguna palabra")
@@ -195,6 +206,7 @@ function botonGuardar() {
             }
             var datosViejos = JSON.parse(sessionStorage.getItem('data'));
             datosViejos.push(palabraNueva)
+            escojerPalabraSecreta();
             //JSON.stringify nos transforma el objeto javascript a string de json
             sessionStorage.setItem('data', JSON.stringify(datosViejos));
 
