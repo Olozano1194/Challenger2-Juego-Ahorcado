@@ -1,13 +1,10 @@
-
 const palabras = ["ALURA", "ORACLE", "ONE", "JAVASCRIPT"];
-var tablero = document.getElementById("canvas").getContext("2d");
-var palabraSecreta = "";
-var aciertos = 0;
-var letras = [];
-var errores = 6;
-var letraIncorrecta = [];
-
-var palabraCorrect = [];
+//var tablero = document.getElementById("canvas").getContext("2d");
+let palabraSecreta = "";
+let aciertos = 0;
+let letras = [];
+let errores = 6;
+let letraIncorrecta = [];
 
 convertirPalabra();
 
@@ -42,8 +39,10 @@ function verificaLetra(keycode) {
     }
 }
 //validar errores
-function anhadirLetraIncorrecta() {
+function anhadirLetraIncorrecta(letra) {
     errores -= 1;
+    letraIncorrecta.push(letra);
+    dibujarVidaHorca(6 - errores);
     console.log(errores);
 }
 
@@ -54,7 +53,9 @@ window.onload = function nuevo_juego() {
     dibujarLinea();
 
     aciertos = 0;
-    erradas = 0;
+    errores = 6;
+    letras = [];
+    letraIncorrecta = [];
 
     document.onkeydown = (e) => {
         var tecla = e.key.toUpperCase();
@@ -66,21 +67,21 @@ window.onload = function nuevo_juego() {
             letras.push(tecla); // Agregar la tecla al array letras
             var letra = tecla;
             
-            if (palabraSecreta.includes(tecla) && !palabraCorrect.includes(tecla)) {
-              for (var i = 0; i < palabraSecreta.length; i++) {
-                if (palabraSecreta[i] === letra) {
-                  dibujarLetra(i);
-                  //agregarAcierto(palabraSecreta[i]);
-                  //verificarGanador();
-                }
-              }
-            } else if (!letraIncorrecta.includes(letra) && !palabraCorrect.includes(letra) && palabraCorrect.length < palabraSecreta.length) {
-              anhadirLetraIncorrecta(letra);
-              dibujarLetraIncorrecta(letra, errores);
-            }
+            if (palabraSecreta.includes(tecla) && !letras.includes(tecla)) {
+               for (var i = 0; i < palabraSecreta.length; i++) {
+                 if (palabraSecreta[i] === letra) {
+                   dibujarLetra(i);
+                   //agregarAcierto(palabraSecreta[i]);
+                   //verificarGanador();
+                 }
+               }
+             } else if (!letraIncorrecta.includes(tecla) && !letras.includes(tecla)) {
+               anhadirLetraIncorrecta(letra);
+               dibujarLetraIncorrecta(letra, errores);
+             }
             
             // Verificar si el jugador ganó después de procesar la letra ingresada
-            comprobarSiGano(letra);
+            comprobarSiGano();
           }
         }
       }
@@ -92,39 +93,39 @@ function capturarTeclado(letra) {
 
     let btnSelecionada = document.getElementById("tecla" + letra);
 
-    if (palabraSecreta.includes(letra)) {
+    if (!letras.includes(letra)) {
+        letras.push(letra);
 
-        btnSelecionada.disabled = true;
-        btnSelecionada.style.backgroundColor = "green";
-
-
+        if (palabraSecreta.includes(letra)) {
+            btnSelecionada.disabled = true;
+            btnSelecionada.style.backgroundColor = "green";
+            for (var i = 0; i < palabraSecreta.length; i++) {
+                if (palabraSecreta[i] === letra) {
+                    dibujarLetra(i);
+                }
+            }
+        } else {
+            btnSelecionada.style.backgroundColor = "red";
+            btnSelecionada.disabled = true;
+            anhadirLetraIncorrecta(letra);
+            dibujarLetraIncorrecta(letra, errores);
+        }
     }
-    else {
-        btnSelecionada.style.backgroundColor = "red";
-        btnSelecionada.disabled = true;
-
-    }
-    comprobarSiGano(letra);
+    comprobarSiGano();
 
 }
 
 //comprobación si el jugador gano o no
-function comprobarSiGano(letra) {
-
-    console.log(letra);
-
+function comprobarSiGano() {
+    // Verificar si el jugador ganó
+    let aciertosTemp = 0;
     for (var i = 0; i < palabraSecreta.length; i++) {
-        if (palabraSecreta[i] == letra) {
-
-            //palabraCorrect(i)++;
-            aciertos++;
-            dibujarLetra(letra);
-            //console.log("acertadas "+contLetAcertadas);
+        if (letras.includes(palabraSecreta[i])) {
+            aciertosTemp++;
         }
     }
-
-    if (aciertos == palabraSecreta.length) {
-
+    
+    if (aciertosTemp == palabraSecreta.length) {
         Swal.fire({
             title: 'Acertaste!!!',
             text: 'la palabra adivinada era: ' + palabraSecreta,
@@ -136,31 +137,25 @@ function comprobarSiGano(letra) {
             width: '20%',
             allowOutsideClick: false,
         })
-        // borrarCanvas();
         reload();
         escojerPalabraSecreta();
     }
-    if (!palabraSecreta.includes(letra)) {
-        erradas++;
-        //console.log("erradas "+contLetErradas);
-        dibujarVidaHorca(erradas);
-
-        if (erradas == 6) {
-            Swal.fire({
-                icon: 'error',
-                title: 'PERDISTE!!!',
-                text: 'La palabra adivinada era: ' + palabraSecreta,
-                background: 'rgb(255,255,255)',
-                timer: 5000,
-                timerProgressBar: true,
-                backdrop: true,
-                width: '30%',
-                allowOutsideClick: false,
-            })
-            //  borrarCanvas();  
-            reload();
-            escojerPalabraSecreta();
-        }
+    
+    // Verificar si el jugador perdió
+    if (errores <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'PERDISTE!!!',
+            text: 'La palabra adivinada era: ' + palabraSecreta,
+            background: 'rgb(255,255,255)',
+            timer: 5000,
+            timerProgressBar: true,
+            backdrop: true,
+            width: '30%',
+            allowOutsideClick: false,
+        })
+        reload();
+        escojerPalabraSecreta();
     }
 }
 
