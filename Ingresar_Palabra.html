@@ -5,23 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingresar Palabra</title>
-    <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./styles/ingresarPalabra/mobile.css">
+    <link rel="stylesheet" href="./styles/ingresarPalabra/tablet.css" media="(min-width: 800px)">
+    <link rel="stylesheet" href="./styles/ingresarPalabra/desktop.css" media="(min-width: 1024px)">
+
+    <!--Font Awesome-->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'>
+
 
 </head>
-<body>
-    <header class="encabezado_agregar">
-        <h1><img src="Imagenes/Logo.png" class="Logo Alura" alt="Logo Alura"></h1>
-        <h2 class="titulo_encabezado_agregar">Agregar palabra</h2>
+<body>    
+    <header>
+        <img src="Imagenes/Logo.png" class="imgLogo" alt="Logo Alura">
+        <h1 class="titulo-encabezado">Agregar palabra</h1>
     </header>
     <main>
-        <section class="ingresar-palabra"></section>
-        <textarea cols="60" rows="20" id="Ingrese-Palabra" placeholder="Ingrese una palabra" maxlength="8" class="txt_palabra"></textarea>
+        <section class="ingresar-palabra">        
+        <input type="text" id="Ingrese-Palabra" class="txt_palabra" placeholder="Ingrese una palabra" maxlength="8">
         
-        <i class="fas fa-exclamation-circle"></i>
-        <p><img src="Imagenes/Vector.png"> Máx. de 8 letras</p>
+        <div class="alert">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <p>Máx. de 8 letras</p>
+        </div>
+        </section>
 
-        <section>
+        <section class="btn">
            <!-- <a href="empezar_jugar.html" id="ingresarPalabra" onclick="agregarPalabra()">Guardar y Empezar</a> -->
           <!--  <a href="empezar_jugar.html">  -->
                 <input class="btn_agregar" type="button" id="agregarPalabra" value="Agregar y Empezar" onclick="botonGuardar()">
@@ -35,6 +45,7 @@
         <a href="https://github.com/Olozano1194" target="_blank"><img src="imagenes/logo_github.png" alt=""/></a>
         
     </footer>
+    
     <script src="./scripts/script.js"></script> 
 </body>
 </html>

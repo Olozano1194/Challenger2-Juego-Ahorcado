@@ -1,0 +1,47 @@
+header {
+    padding-bottom: 6rem;
+}
+
+header .divTitulo {
+    width: 30%;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+header .divTitulo .titulo_encabezado_agregar {
+    text-align: center;
+}
+
+header .divImg {
+    width: 10%;
+}
+
+/* Main */
+main .ingresar-palabra {
+    gap: 1rem;
+}
+
+main .ingresar-palabra .txt_palabra {
+    width: 40rem;
+    height: 6rem;
+    font-size: 2.5rem;
+    
+}
+
+main .ingresar-palabra .alert {
+    font-size: 2rem;
+}
+
+/* botones */
+main .btn .btn_agregar {
+    width: 18rem;
+    height: 8rem;
+    font-size: 1.8rem;
+}
+
+main .btn .Cancelar {
+    width: 18rem;
+    height: 8rem;
+    font-size: 2.2rem;
+}

@@ -1,0 +1,121 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;     
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: #e5e5e5;
+    font-family: 'SF Pixelate', sans-serif;
+}
+
+/* estilos Preterminados */
+a {
+    text-decoration: none;
+}
+
+/* Header */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;    
+}
+
+header .imgLogo {
+    width: 6rem;    
+}
+
+header .titulo-encabezado {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+/* Main */
+main {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;    
+}
+
+main .Inicio-Juego {
+    width: 30rem;
+    height: 8.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    color: #e5e5e5;
+    border-radius: 2rem;
+    font-size: 2rem;
+    font-weight: 600;    
+}
+
+main .Inicio-Juego:hover {
+    background-color: darkblue;
+    transform: scale(1.05);
+}
+
+main .Ingresar-Palabra {
+    width: 30rem;
+    height: 8.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #727272;
+    color: white;
+    border-radius: 2rem;
+    font-size: 2rem;
+    font-weight: 600;        
+}
+
+main .Ingresar-Palabra:hover {
+    background-color: #a3a3a3;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;    
+}
+
+footer .copyright {
+    font-weight: 800;
+    @media (max-width: 640px) {
+        font-size: 1.4rem;
+    }
+    @media (min-width: 641px) and (max-width: 799px) {
+        font-size: 1.7rem;
+    }
+}
+
+footer img {
+    width: 2.5rem;
+}
+
+footer img:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
+

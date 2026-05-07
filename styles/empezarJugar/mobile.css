@@ -1,0 +1,152 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Estilos preterminados */
+a {
+    text-decoration: none;
+}
+
+/* Header */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 1rem;
+}
+
+header .divImg {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+header .divTitulo {
+    width: 60%;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+header .imgLogo {
+    width: 1rem;
+    
+}
+
+header .divTitulo .titulo-encabezado {
+    font-weight: 700;
+}
+
+/* main */
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+main .canvas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2.5rem
+}
+
+main .canva {
+    width: 90%;
+    height: 55vh;
+    border: 2px solid #4CAF50;
+}
+
+/* btns */
+main .btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+main .btns .botones {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+main .btns .botones .juego_nuevo {
+    width: 15rem;
+    height: 5rem;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 1.5rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .btns .botones .desistir {
+    width: 15rem;
+    height: 5rem;
+    background-color: red;
+    border: none;
+    border-radius: 1.5rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+footer .copyright {
+    font-weight: 800;
+    @media (max-width: 640px) {
+        font-size: 1.4rem;
+    }
+    @media (min-width: 641px) and (max-width: 799px) {
+        font-size: 1.7rem;
+    }
+}
+
+footer img {
+    width: 4rem;
+}
+
+footer img:hover {
+    transform: scale(1.2);
+}

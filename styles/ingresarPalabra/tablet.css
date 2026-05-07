@@ -1,0 +1,24 @@
+header .imgLogo {
+    width: 8rem;    
+}
+
+header .titulo-encabezado {
+    font-size: 4rem;
+}
+
+main .ingresar-palabra {
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;        
+}
+
+main .ingresar-palabra .txt_palabra {
+    width: 40rem;
+}
+
+footer .copyright {
+    font-size: 2rem;        
+}

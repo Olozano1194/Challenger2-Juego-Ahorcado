@@ -1,0 +1,27 @@
+header {
+    padding-bottom: 3rem;
+}
+
+header .divTitulo {
+    font-size: 2rem;
+    
+}
+
+main .canva {
+    height: 60vh;
+}
+
+main .btns .botones {
+    gap: 4rem;
+}
+
+main .btns .botones .juego_nuevo, main .btns .botones .desistir {
+    width: 20rem;
+    height: 9rem;
+}
+
+
+footer .copyright {
+    font-size: 2.5rem;
+    padding-right: 2rem;
+}
