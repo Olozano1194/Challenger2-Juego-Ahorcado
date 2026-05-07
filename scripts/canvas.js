@@ -59,7 +59,7 @@ function dibujarLinea(){ //esta funcion la usamos para colocar los guiones corre
     const height = canvas.height;
 
     //Configuración de la linea    
-    tablero.LineWidth= 5; //Ancho de la linea basado en el ancho del canvas
+    tablero.lineWidth = 5; //Ancho de la linea basado en el ancho del canvas
     tablero.lineCap= "round";
     tablero.fillStyle= "#F3F5F6";
     tablero.strokeStyle= "#8A3871";
@@ -124,50 +124,43 @@ function dibujarVidaHorca(contador){
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
 
-    //Obtenemos las dimensiones actuales 
+    //Obtenemos las dimensiones actuales
     const width = canvas.width;
     const height = canvas.height;
 
     tablero.strokeStyle = "#8A3871" ;
     tablero.lineWidth = 0.01 * width;
 
-    switch(contador){
-
-        case 1: //cabeza
-            //tablero.lineWidth = 8;
-            tablero.beginPath();
-            tablero.arc(width * 0.58, width * 0.27, 8, 0, Math.PI * 2);
-            break;  
-        case 2://cuerpo
-            tablero.beginPath();
-            //tablero.lineWidth = 4;
-            tablero.moveTo(width * 0.58, height *0.20);
-            tablero.lineTo(width * 0.58, height * 0.38);
-            break;
-        case 3://brazo derecha
-            tablero.beginPath();
-            //tablero.lineWidth = 4;
-            tablero.moveTo(width * 0.58, height * 0.25);
-            tablero.lineTo(width * 0.68, height * 0.29); 
-            break; 
-        case 4://brazo izquierda
-            tablero.beginPath();
-            //tablero.lineWidth = 4;
-            tablero.moveTo(width * 0.58, height * 0.25);
-            tablero.lineTo(width * 0.48, height * 0.29);
-            break;  
-        case 5://pierna derecha
-            tablero.beginPath();
-            //tablero.lineWidth = 4;
-            tablero.moveTo(width * 0.58, height * 0.38);
-            tablero.lineTo(width * 0.68, height * 0.42);
-            break;
-        case 6: //pierna izquierda
-            tablero.beginPath();
-            //tablero.lineWidth = 4;
-            tablero.moveTo(width * 0.58, height * 0.38);
-            tablero.lineTo(width * 0.48, height * 0.42);
-            break;                    
+    tablero.beginPath();
+    // Dibujar todas las partes acumulativamente hasta el contador actual
+    if (contador >= 1) {
+        // cabeza
+        tablero.arc(width * 0.58, height * 0.27, 8, 0, Math.PI * 2);
+    }
+    if (contador >= 2) {
+        // cuerpo
+        tablero.moveTo(width * 0.58, height * 0.20);
+        tablero.lineTo(width * 0.58, height * 0.38);
+    }
+    if (contador >= 3) {
+        // brazo derecha
+        tablero.moveTo(width * 0.58, height * 0.25);
+        tablero.lineTo(width * 0.68, height * 0.29);
+    }
+    if (contador >= 4) {
+        // brazo izquierda
+        tablero.moveTo(width * 0.58, height * 0.25);
+        tablero.lineTo(width * 0.48, height * 0.29);
+    }
+    if (contador >= 5) {
+        // pierna derecha
+        tablero.moveTo(width * 0.58, height * 0.38);
+        tablero.lineTo(width * 0.68, height * 0.42);
+    }
+    if (contador >= 6) {
+        // pierna izquierda
+        tablero.moveTo(width * 0.58, height * 0.38);
+        tablero.lineTo(width * 0.48, height * 0.42);
     }
     tablero.stroke();
     tablero.closePath();

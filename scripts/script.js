@@ -67,7 +67,7 @@ window.onload = function nuevo_juego() {
             letras.push(tecla); // Agregar la tecla al array letras
             var letra = tecla;
             
-            if (palabraSecreta.includes(tecla) && !letras.includes(tecla)) {
+            if (palabraSecreta.includes(tecla)) {
                for (var i = 0; i < palabraSecreta.length; i++) {
                  if (palabraSecreta[i] === letra) {
                    dibujarLetra(i);
@@ -75,13 +75,13 @@ window.onload = function nuevo_juego() {
                    //verificarGanador();
                  }
                }
-             } else if (!letraIncorrecta.includes(tecla) && !letras.includes(tecla)) {
+             } else if (!letraIncorrecta.includes(tecla)) {
                anhadirLetraIncorrecta(letra);
-               dibujarLetraIncorrecta(letra, errores);
-             }
-            
-            // Verificar si el jugador ganó después de procesar la letra ingresada
-            comprobarSiGano();
+                dibujarLetraIncorrecta(letra, 6 - errores);
+              }
+             
+             // Verificar si el jugador ganó después de procesar la letra ingresada
+             comprobarSiGano();
           }
         }
       }
@@ -108,7 +108,7 @@ function capturarTeclado(letra) {
             btnSelecionada.style.backgroundColor = "red";
             btnSelecionada.disabled = true;
             anhadirLetraIncorrecta(letra);
-            dibujarLetraIncorrecta(letra, errores);
+            dibujarLetraIncorrecta(letra, 6 - errores);
         }
     }
     comprobarSiGano();
