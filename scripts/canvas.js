@@ -1,5 +1,6 @@
-//desde aca comienza el metodo canvas, creación del canvas
-function dibujeCanvas(){ //esta funcion es para crear la guillotina
+import { state } from './state.js';
+
+export function dibujeCanvas(){ //esta funcion es para crear la guillotina
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
 
@@ -48,8 +49,8 @@ function dibujeCanvas(){ //esta funcion es para crear la guillotina
     tablero.closePath();
 }
 
-function dibujarLinea(){ //esta funcion la usamos para colocar los guiones correspondientes
-    if (!palabraSecreta || palabraSecreta.length === 0) return;
+export function dibujarLinea(){ //esta funcion la usamos para colocar los guiones correspondientes
+    if (!state.palabraSecreta || state.palabraSecreta.length === 0) return;
     
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
@@ -58,18 +59,20 @@ function dibujarLinea(){ //esta funcion la usamos para colocar los guiones corre
     const width = canvas.width;
     const height = canvas.height;
 
-    //Configuración de la linea    
-    tablero.lineWidth = 5; //Ancho de la linea basado en el ancho del canvas
+    //Calcular el ancho para cada linea
+    const anchura = width * 0.6 / state.palabraSecreta.length; //Espaciado entre lineas
+    const anchoLinea = Math.min(width * 0.05, anchura * 0.65); //Ancho de cada linea, se achica si hay muchas letras
+    
+    //Configuración de la linea  
+    tablero.lineWidth = Math.min(5, anchoLinea * 0.3);
     tablero.lineCap= "round";
     tablero.fillStyle= "#F3F5F6";
     tablero.strokeStyle= "#8A3871";
 
-    //Calcular el ancho para cada linea
-    const anchura = width * 0.6 / palabraSecreta.length; //Se usa porcentaje del ancho 
-
-    for(let i=0; i < palabraSecreta.length; i++){
-        tablero.moveTo((width * 0.1) + (anchura * i), height * 0.75); //Ajusta la posición Y
-        tablero.lineTo((width * 0.15) + (anchura * i), height * 0.75); //Ajusta la posición Y
+    for(let i=0; i < state.palabraSecreta.length; i++){
+        const centro = (width * 0.125) + (anchura * i);
+        tablero.moveTo(centro - anchoLinea/2, height * 0.75);
+        tablero.lineTo(centro + anchoLinea/2, height * 0.75);
     }
     //Dibuja las lineas
     tablero.stroke();
@@ -77,28 +80,23 @@ function dibujarLinea(){ //esta funcion la usamos para colocar los guiones corre
 }
 
 //esta funcion nos ayuda a mostrar las letras correctas
-function dibujarLetra(letra){
+export function dibujarLetra(letra){
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
-
     const width = canvas.width;
     const height = canvas.height;
-
-    tablero.font= `${0.06 * height}px Inter`;
+    tablero.font = `${Math.min(width * 0.04, height * 0.04)}px Inter`;
+    tablero.textAlign = 'center';
     tablero.lineWidth = 0.2;
-    tablero.lineCap= "round";
-    tablero.lineJoin= "round";
+    tablero.lineCap = "round";
+    tablero.lineJoin = "round";
     tablero.fillStyle = "#2A3871";
-    
-    //Calcula el ancho 
-    var anchura=width * 1 / palabraSecreta.length;
-
-    tablero.fillText(palabraSecreta[letra],(width * 0.1) + (anchura*letra), height * 0.65);
-    
+    const anchura = width * 0.6 / state.palabraSecreta.length;
+    tablero.fillText(state.palabraSecreta[letra], (width * 0.125) + (anchura * letra), height * 0.68);
 }
 
 //esta funcion va a servir para mostrar las letras incorrectas
-function dibujarLetraIncorrecta(letra, errorsLeft){
+export function dibujarLetraIncorrecta(letra, errorsLeft){
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
 
@@ -120,53 +118,59 @@ function dibujarLetraIncorrecta(letra, errorsLeft){
     
 } 
 
-function dibujarVidaHorca(contador){
+export function dibujarVidaHorca(contador){
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
-
-    //Obtenemos las dimensiones actuales
     const width = canvas.width;
     const height = canvas.height;
 
-    tablero.strokeStyle = "#8A3871" ;
+    tablero.strokeStyle = "#8A3871";
     tablero.lineWidth = 0.01 * width;
 
+    const headRadius = Math.min(width, height) * 0.025;
+    const centerX = width * 0.58;
+    const headY = height * 0.15 + headRadius * 1.8;   // cabeza colgando de la soga con espacio
+    const bodyStartY = headY + headRadius * 0.8;  // cuello
+    const bodyEndY = headY + headRadius * 3.5;    // largo del torso
+    const armsY = bodyStartY + (bodyEndY - bodyStartY) * 0.4;
+    const armLength = headRadius * 2;
+    const legLength = headRadius * 1.8;
+
     tablero.beginPath();
-    // Dibujar todas las partes acumulativamente hasta el contador actual
     if (contador >= 1) {
         // cabeza
-        tablero.arc(width * 0.58, height * 0.27, 8, 0, Math.PI * 2);
+        tablero.arc(centerX, headY, headRadius, 0, Math.PI * 2);
     }
     if (contador >= 2) {
         // cuerpo
-        tablero.moveTo(width * 0.58, height * 0.20);
-        tablero.lineTo(width * 0.58, height * 0.38);
+        tablero.moveTo(centerX, bodyStartY);
+        tablero.lineTo(centerX, bodyEndY);
     }
     if (contador >= 3) {
-        // brazo derecha
-        tablero.moveTo(width * 0.58, height * 0.25);
-        tablero.lineTo(width * 0.68, height * 0.29);
+        // brazo derecho
+        tablero.moveTo(centerX, armsY);
+        tablero.lineTo(centerX + armLength, armsY + armLength * 0.6);
     }
     if (contador >= 4) {
-        // brazo izquierda
-        tablero.moveTo(width * 0.58, height * 0.25);
-        tablero.lineTo(width * 0.48, height * 0.29);
+        // brazo izquierdo
+        tablero.moveTo(centerX, armsY);
+        tablero.lineTo(centerX - armLength, armsY + armLength * 0.6);
     }
     if (contador >= 5) {
         // pierna derecha
-        tablero.moveTo(width * 0.58, height * 0.38);
-        tablero.lineTo(width * 0.68, height * 0.42);
+        tablero.moveTo(centerX, bodyEndY);
+        tablero.lineTo(centerX + legLength, bodyEndY + legLength * 0.8);
     }
     if (contador >= 6) {
         // pierna izquierda
-        tablero.moveTo(width * 0.58, height * 0.38);
-        tablero.lineTo(width * 0.48, height * 0.42);
+        tablero.moveTo(centerX, bodyEndY);
+        tablero.lineTo(centerX - legLength, bodyEndY + legLength * 0.8);
     }
     tablero.stroke();
     tablero.closePath();
 }
 
-function redibujarTodo() {
+export function redibujarTodo() {
     const canvas = document.getElementById('canvas');
     const tablero = canvas.getContext('2d');
     const width = canvas.width;
@@ -176,32 +180,32 @@ function redibujarTodo() {
     dibujeCanvas();
     dibujarLinea();
 
-    if (palabraSecreta) {
-        for (let i = 0; i < letras.length; i++) {
-            const letra = letras[i];
-            if (palabraSecreta.includes(letra)) {
-                for (let j = 0; j < palabraSecreta.length; j++) {
-                    if (palabraSecreta[j] === letra) {
+    if (state.palabraSecreta) {
+        for (let i = 0; i < state.letras.length; i++) {
+            const letra = state.letras[i];
+            if (state.palabraSecreta.includes(letra)) {
+                for (let j = 0; j < state.palabraSecreta.length; j++) {
+                    if (state.palabraSecreta[j] === letra) {
                         dibujarLetra(j);
                     }
                 }
             }
         }
 
-        for (let i = 0; i < letraIncorrecta.length; i++) {
-            const letra = letraIncorrecta[i];
+        for (let i = 0; i < state.letraIncorrecta.length; i++) {
+            const letra = state.letraIncorrecta[i];
             const errorsLeft = 6 - (i + 1);
             dibujarLetraIncorrecta(letra, errorsLeft);
         }
 
-        const numErrors = 6 - errores;
+        const numErrors = 6 - state.errores;
         for (let i = 1; i <= numErrors; i++) {
             dibujarVidaHorca(i);
         }
     }
 }
 
-function resizeCanvas() {
+export function resizeCanvas() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth * 0.8;
@@ -209,7 +213,7 @@ function resizeCanvas() {
     redibujarTodo();
 }
 
-function init() {
+export function init() {
     resizeCanvas();    
 }
 
